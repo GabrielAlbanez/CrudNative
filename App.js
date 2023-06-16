@@ -36,7 +36,7 @@ export default function App() {
       },
       {
         text: 'não',
-        style: 'cancel'
+      
       }
       ]
     )
@@ -86,13 +86,13 @@ export default function App() {
             style={styles.input}
             placeholder="nomeProduto"
             value={nomeProduto}
-            onChangeText={text => setNome(text)}
+            onChangeText={text => setNomeProduto(text)}
           />
           <TextInput
             style={styles.input}
             placeholder="data Valdiade"
             value={dataValidade}
-            onChangeText={text => setEmail(text)}
+            onChangeText={text => setDataValidade(text)}
           />
           <TouchableOpacity style={styles.button} onPress={criarNovoProduto}>
             <Text style={styles.buttonText}>Adicionar</Text>
