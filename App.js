@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { Alert, FlatList, Modal, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Alert,  Modal, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import axios from "axios";
 import { useEffect, useState } from "react";
 export default function App() {
@@ -16,7 +16,7 @@ export default function App() {
     axios
       .get(url)
       .then((response) => {
-        setUsuarios(response.data);
+        setProdutos(response.data);
       })
       .catch((error) => console.log(error));
   };
@@ -45,7 +45,7 @@ export default function App() {
   const deletarProduto = (id) => {
     axios.delete(`${url}/${id}`)
       .then(() => {
-        const produtosAtualizados = usuarios.filter((produto) => produto.id !== id)
+        const produtosAtualizados = produtos.filter((produto) => produto.id !== id)
         setProdutos(produtosAtualizados)
       })
       .catch((errors) => { console.log(errors) })
@@ -78,28 +78,26 @@ export default function App() {
 
 
   return (
-    <View style={styles.container}>
+    <View>
       <Modal visible={modalVisible} animationType="slide">
-        <View style={styles.modalContainer}>
-          <Text style={styles.modalTitle}>Adicionar Produto</Text>
+        <View >
+          <Text >Adicionar Produto</Text>
           <TextInput
-            style={styles.input}
             placeholder="nomeProduto"
             value={nomeProduto}
             onChangeText={text => setNomeProduto(text)}
           />
           <TextInput
-            style={styles.input}
             placeholder="data Valdiade"
             value={dataValidade}
             onChangeText={text => setDataValidade(text)}
           />
-          <TouchableOpacity style={styles.button} onPress={criarNovoProduto}>
-            <Text style={styles.buttonText}>Adicionar</Text>
+          <TouchableOpacity  onPress={criarNovoProduto}>
+            <Text>Adicionar</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.button} onPress={setModalVisible(false)}>
-            <Text style={styles.buttonText}>Cancelar</Text>
+          <TouchableOpacity  onPress={setModalVisible(false)}>
+            <Text>Cancelar</Text>
           </TouchableOpacity>
         </View>
       </Modal>
@@ -109,11 +107,10 @@ export default function App() {
         transparent={true}
         onRequestClose={() => setUpdateModalVisible(false)}
       >
-        <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>Atualizar Produto</Text>
+        <View>
+          <View>
+            <Text >Atualizar Produto</Text>
             <TextInput
-              style={styles.input}
               placeholder="nome produto"
               value={nomeProduto}
               onChangeText={text => setNomeProduto(text)}
